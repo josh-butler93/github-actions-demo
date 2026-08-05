@@ -6,22 +6,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-steps:
-  - uses: actions/checkout@v4 #this downloads the repo
-  - name: Use Node.js
-    uses: actions/setup-node@v4 #this just means install node.js
-    with:
-      node-version: "20"
-  - name: Install dependencies #this installs necessary dependencies
-    run: npm install
-  - name: Build project
-    run: |
-      mkdir dist
-      echo "This is the build artifact" > dist/build.txt
-  - name: Run tests
-    run: npm test
-  - name: Upload build artifact
-    uses: actions/upload-artifact@v4 #uses: actions/upload-artifact@v4: Calls the action to handle the upload
-    with:
-      name: build-assets # The name of the artifact as it will appear in the GitHub UI
-      path: dist # The directory (or file) to upload
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install dependencies
+        run: npm install
+      - name: Build project
+        run: |
+          mkdir dist
+          echo "This is the build artifact" > dist/build.txt
+      - name: Run tests
+        run: npm test
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-assets
+          path: dist
